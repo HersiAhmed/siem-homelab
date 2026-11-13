@@ -153,7 +153,38 @@ VMware flagged the file as not passing its OVF checks, which is common with Virt
 ![OVF warning](screenshots/28-ovf-import-warning.png)
 ![Imported into VMware](screenshots/29-ubuntu-imported-vmware.png)
 
-The import kept the 8 GB RAM, 4 CPUs, and 80 GB disk. Two settings needed fixing: the network adapter came in as **Bridged** (directly on my home network), which I changed to **NAT** to match the Windows VM, and the CD drive pointed to the old Guest Additions disc.
+The import kept the 8 GB RAM, 4 CPUs, and 80 GB disk. Two settings needed fixing before the first boot:
+
+- **Network adapter:** came in as **Bridged** (directly on my home network). I changed it to **NAT** so both VMs share VMware's private network
+- **CD/DVD:** still pointed at the old Guest Additions disc, so I disconnected it
+
+### First boot in VMware
+
+Ubuntu booted straight to the desktop. I installed VMware's Linux guest tools, which replace VirtualBox Guest Additions and come straight from Ubuntu's repositories:
+
+```bash
+sudo apt update
+sudo apt install -y open-vm-tools-desktop
+sudo reboot
+```
+
+### Verifying Splunk survived the move
+
+Everything lives on the virtual disk, so Splunk, its service file, and its data all came across:
+
+```bash
+systemctl status Splunkd
+```
+
+![Splunk running in VMware](screenshots/30-splunk-running-in-vmware.png)
+
+Still `enabled` at boot and `active (running)`, under the same systemd service from Part 01. Splunk Web loaded at `localhost:8000`, and the display resized with the window, confirming `open-vm-tools` was working.
+
+![Splunk Web in VMware](screenshots/31-splunk-web-vmware.png)
+
+**Something to follow up on:** the service status shows Splunk's bundled Postgres database started with `-h 0.0.0.0`, which means it's set to listen on every network interface, not just localhost. Next part I'll check with `ss` whether port 5432 is actually reachable from the network, the same `127.0.0.1` vs `0.0.0.0` check from Part 01.
+
+I took a fresh snapshot (`01 - Migrated to VMware, Splunk running`), since VirtualBox snapshots don't carry over in an export.
 
 ---
 
@@ -168,7 +199,16 @@ The import kept the 8 GB RAM, 4 CPUs, and 80 GB disk. Two settings needed fixing
 | Missed "Press any key to boot from CD" | The prompt only waits a few seconds | Selected the CD drive from the boot manager |
 | OVF import check failed | VirtualBox and VMware describe hardware differently | Retry with relaxed checks |
 | Imported VM on Bridged networking | Default from the import | Changed to NAT |
+| CD drive pointed at a missing disc | Leftover Guest Additions disc from VirtualBox | Disconnected it before first boot |
+
+## Where the lab stands
+
+```
+VMware Workstation Pro
+ ├─ SIEM-Ubuntu  (Splunk running)   NAT
+ └─ WIN-Victim   (Windows 11)       NAT
+```
 
 ## What's next
 
-Boot the Ubuntu server in VMware, install VMware's guest tools, confirm Splunk still runs, then get the two VMs talking on the same network.
+Both VMs are on the same VMware NAT network. Next: find each machine's IP address, work through how NAT and subnets fit together, and get the two VMs talking to each other.
