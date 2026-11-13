@@ -19,16 +19,18 @@ Generate realistic attacker activity on Windows, send the logs to Splunk, and bu
 | Part | What I built | Status |
 |---|---|---|
 | [01](01-building-the-siem-server.md) | Ubuntu VM, Linux setup, Splunk installed as a service | ✅ Done |
-| 02 | Windows victim VM + lab network | ⏳ Next |
-| 03 | Sysmon + Splunk forwarder | |
-| 04 | Attack simulations + detections | |
-| 05 | Dashboard | |
+| [02](02-windows-victim-and-switching-hypervisors.md) | Windows victim VM, VirtualBox troubleshooting, move to VMware | ✅ Done |
+| 03 | Connect the VMs on one network | ⏳ Next |
+| 04 | Sysmon + Splunk forwarder | |
+| 05 | Attack simulations + detections | |
+| 06 | Dashboard | |
 
 ## Lab specs
 
 | | |
 |---|---|
 | **Host** | Windows 11 Home, Intel Core Ultra 9, 32 GB RAM |
-| **Hypervisor** | Oracle VirtualBox 7.2 |
+| **Hypervisor** | VMware Workstation Pro 26H1 (the lab started on VirtualBox 7.2; see Part 02) |
 | **SIEM server** | Ubuntu 26.04.1 LTS, 8 GB RAM, 4 CPUs, 80 GB disk |
 | **SIEM** | Splunk Enterprise 10.6.1.1 |
+| **Victim endpoint** | Windows 11 Enterprise Evaluation, 6 GB RAM, 2 CPUs, 64 GB disk |
