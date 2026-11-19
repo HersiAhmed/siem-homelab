@@ -21,8 +21,8 @@ Generate realistic attacker activity on Windows, send the logs to Splunk, and bu
 | [01](01-building-the-siem-server.md) | Ubuntu VM, Linux setup, Splunk installed as a service | ✅ Done |
 | [02](02-windows-victim-and-switching-hypervisors.md) | Windows victim VM, VirtualBox troubleshooting, move to VMware | ✅ Done |
 | [03](03-connecting-the-lab-network.md) | IP addressing, ping tests, Windows Firewall rule | ✅ Done |
-| 04 | Sysmon + Splunk forwarder | ⏳ Next |
-| 05 | Attack simulations + detections | |
+| [04](04-log-forwarding.md) | Sysmon, Universal Forwarder, Windows logs flowing into Splunk | ✅ Done |
+| 05 | Attack simulations + detections | ⏳ Next |
 | 06 | Dashboard | |
 
 ## Lab specs
