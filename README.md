@@ -22,8 +22,8 @@ Generate realistic attacker activity on Windows, send the logs to Splunk, and bu
 | [02](02-windows-victim-and-switching-hypervisors.md) | Windows victim VM, VirtualBox troubleshooting, move to VMware | ✅ Done |
 | [03](03-connecting-the-lab-network.md) | IP addressing, ping tests, Windows Firewall rule | ✅ Done |
 | [04](04-log-forwarding.md) | Sysmon, Universal Forwarder, Windows logs flowing into Splunk | ✅ Done |
-| 05 | Attack simulations + detections | ⏳ Next |
-| 06 | Dashboard | |
+| [05](05-attacks-and-detections.md) | Simulated brute force, discovery, and persistence, with detections mapped to MITRE ATT&CK | ✅ Done |
+| 06 | Dashboard | ⏳ Next |
 
 ## Lab specs
 
