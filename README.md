@@ -1,6 +1,6 @@
 # SIEM Home Lab
 
-A home lab I'm building to practice SOC analyst skills: collecting logs, writing detections, and investigating simulated attacks. I'm building it alongside the TryHackMe SOC Level 1 path (my notes are in [soc-level-1-notes](https://github.com/HersiAhmed/soc-level-1-notes)).
+A home lab I built to practice SOC analyst skills: collecting logs, writing detections, and investigating simulated attacks. A Windows 11 endpoint forwards its logs to a Splunk SIEM, where simulated brute-force, discovery, and persistence attacks are detected and surfaced on a monitoring dashboard, with each detection mapped to MITRE ATT&CK. Built alongside the TryHackMe SOC Level 1 path (my notes are in [soc-level-1-notes](https://github.com/HersiAhmed/soc-level-1-notes)).
 
 ## The goal
 
@@ -23,7 +23,7 @@ Generate realistic attacker activity on Windows, send the logs to Splunk, and bu
 | [03](03-connecting-the-lab-network.md) | IP addressing, ping tests, Windows Firewall rule | ✅ Done |
 | [04](04-log-forwarding.md) | Sysmon, Universal Forwarder, Windows logs flowing into Splunk | ✅ Done |
 | [05](05-attacks-and-detections.md) | Simulated brute force, discovery, and persistence, with detections mapped to MITRE ATT&CK | ✅ Done |
-| 06 | Dashboard | ⏳ Next |
+| [06](06-dashboard.md) | SOC monitoring dashboard bringing the detections onto one screen | ✅ Done |
 
 ## Lab specs
 
